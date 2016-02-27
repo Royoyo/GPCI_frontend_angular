@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang='fr' ng-app="webApp" ng-controller="mainController">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/bootstrap/normalize.css">
+	<link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+	<link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="css/fullcalendar.min.css"/>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">
+          Ifide
+          <!-- TO DO :changer le css pour faire que l'image s'affiche correctement
+          <img alt="Ifide" src="img/logo.png">
+          -->
+		  </a>
+        </div>
+        <div class="navbar-collapse collapse" collapse="navCollapsed">
+          <ul class="nav navbar-nav">
+            <li ui-sref-active="active" ui-sref="administration" ng-show="(currentUser.roles.indexOf('administrateur') > -1)"><a>Administration</a></li>
+            <li ui-sref-active="active" ui-sref="planification" ng-show="(currentUser.roles.indexOf('planificateur') > -1)"><a>Planification</a></li>
+            <li ui-sref-active="active" ui-sref="enseignement" ng-show="(currentUser.roles.indexOf('enseignant') > -1)"><a>Enseignement</a></li>
+          </ul>
+          <div class="navbar-right">
+            <!-- la ligne horizontale s'affiche mais peut rester dans la vue desktop si l'utilisateur change la taille de la fenetre - NIVEAU BUG : faible -->
+            <hr ng-show="!navCollapsed">
+            <p class="navbar-text">Bonjour <strong>{{ currentUser.firstName }} {{ currentUser.lastName }}</strong></p>
+            <button type="button" class="btn btn-default navbar-btn" ng-show="currentUser == null" ng-click="login()">Se connecter</button>
+            <button type="button" class="btn btn-default navbar-btn" ng-hide="currentUser == null" ng-click="logout()">Se déconnecter</button>
+          </div>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+	<div ui-view class="container-fluid"></div>
+
+    <!-- librairies -->
+    <script src="lib/lodash.min.js"></script>
+    <script src="lib/calendar/jquery.min.js"></script>
+    <script src="lib/calendar/moment.min.js"></script>
+
+    <script src="lib/angular.js"></script>
+    <script src="lib/restangular.min.js"></script>
+    <script src="lib/angular-ui-router.min.js"></script>
+    <script src="lib/ui-bootstrap-tpls.min.js"></script>
+    <script src="lib/smart-table.min.js"></script>
+    <script src="lib/angular-animate.js"></script>
+
+    <script src="lib/calendar/fullcalendar.min.js"></script>
+    <script src="lib/calendar/fr.js"></script>
+    <script src="lib/calendar/gcal.js"></script>
+    <script src="lib/calendar/calendar.js"></script>
+    
+    <!-- inject:js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/services/activation.js"></script>
+    <script src="scripts/directives/eventChoices.js"></script>
+    <script src="scripts/filters/unique.js"></script>
+    <script src="scripts/controllers/activation.js"></script>
+    <script src="scripts/fonctionGlobale.js"></script>
+    <script src="scripts/services/helper.js"></script>
+    <script src="scripts/controllers/login.js"></script>
+    <script src="scripts/routing.js"></script>
+    <script src="scripts/services/matieres.js"></script>
+    <script src="scripts/controllers/mainController.js"></script>
+    <script src="scripts/services/roles.js"></script>
+    <script src="scripts/controllers/profil.js"></script>
+    <script src="scripts/services/session.js"></script>
+    <script src="scripts/controllers/administration/Details.js"></script>
+    <script src="scripts/services/administration/personnes.js"></script>
+    <script src="scripts/controllers/administration/List.js"></script>
+    <script src="scripts/services/enseignement/cours.js"></script>
+    <script src="scripts/controllers/enseignement/calendarController.js"></script>
+    <script src="scripts/services/enseignement/indispos.js"></script>
+    <script src="scripts/controllers/enseignement/coursController.js"></script>
+    <script src="scripts/services/login/authentification.js"></script>
+    <script src="scripts/controllers/enseignement/indisposCalendarController.js"></script>
+    <script src="scripts/services/login/intercepteurHttp.js"></script>
+    <script src="scripts/controllers/enseignement/indisposController.js"></script>
+    <script src="scripts/services/planification/classes.js"></script>
+    <script src="scripts/controllers/enseignement/indisposDetailsController.js"></script>
+    <script src="scripts/services/planification/cours.js"></script>
+    <script src="scripts/controllers/planification/calendar.js"></script>
+    <script src="scripts/services/planification/enseignants.js"></script>
+    <script src="scripts/controllers/planification/calendarClasses.js"></script>
+    <script src="scripts/services/planification/matieres.js"></script>
+    <script src="scripts/controllers/planification/calendarCours.js"></script>
+    <script src="scripts/services/planification/salles.js"></script>
+    <script src="scripts/controllers/planification/classes.js"></script>
+    <script src="scripts/controllers/planification/classesDetails.js"></script>
+    <script src="scripts/controllers/planification/enseignants.js"></script>
+    <script src="scripts/controllers/planification/enseignantsMatieres.js"></script>
+    <script src="scripts/controllers/planification/matieres.js"></script>
+    <script src="scripts/controllers/planification/matieresDetails.js"></script>
+    <script src="scripts/controllers/planification/salles.js"></script>
+    <script src="scripts/controllers/planification/sallesDetails.js"></script>
+    <!-- endinject -->
+</body>
+</html>
